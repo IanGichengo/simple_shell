@@ -14,6 +14,7 @@
 
 /* For Read/Write Buffers */
 #define MAX_INPUT_LENGTH 1024
+#define BUFFER_SIZE 1024
 
 
 
@@ -48,7 +49,9 @@ typedef struct builtin
 void display_prompt(void);
 void execute_command(char **command);
 int main(void);
-
+ssize_t read_input(char *buffer, size_t size);
+char *append_char(char *str, char c, size_t *size);
+char *custom_getline(void);
 
 
 #endif

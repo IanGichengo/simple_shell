@@ -1,8 +1,4 @@
-#include <stdio.h>
-#include <stdlib.h>
-#include <unistd.h>
-
-#define BUFFER_SIZE 1024
+#include "shell.h"
 
 /**
  * read_input - Read characters from standard input into a buffer
@@ -10,6 +6,7 @@
  * @size: input size
  * Return: The number of characters read.
  */
+
 ssize_t read_input(char *buffer, size_t size)
 {
 	return (read(STDIN_FILENO, buffer, size));
@@ -71,31 +68,4 @@ char *custom_getline(void)
 	}
 	line = append_char(line, '\0', &line_size);
 	return (line);
-}
-
-/**
- * main - The main function for the example program.
- *
- * This function prompts the user to enter a line of text, reads it using
- * custom_getline, and prints the entered text.
- *
- * Return: 0 on success.
- */
-int main(void)
-{
-	printf("Enter a line of text: ");
-	fflush(stdout);
-
-	char *line = custom_getline();
-
-	if (line != NULL)
-	{
-		printf("You entered: %s\n", line);
-		free(line);
-	}
-	else
-	{
-		printf("Error reading input.\n");
-	}
-	return (0);
 }
