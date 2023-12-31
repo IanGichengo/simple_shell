@@ -1,8 +1,4 @@
-#include <stdio.h>
-#include <stdlib.h>
-#include <unistd.h>
-
-#define MAX_INPUT_LENGTH 1024
+#include "shell.h"
 
 /**
  * display_prompt - Display the shell prompt
@@ -43,39 +39,4 @@ void execute_command(char **command)
 	{
 		wait(NULL);
 	}
-}
-
-/**
- * main - the main function
- * Return: null
- */
-
-int main(void)
-{
-	char input[MAX_INPUT_LENGTH];
-	char *command[MAX_INPUT_LENGTH];
-	int i;
-
-	while (1)
-	{
-		display_prompt();
-		if (fgets(input, MAX_INPUT_LENGTH, stdin) == NULL)
-		{
-			printf("\nExiting the shell.\n");
-			break;
-		}
-		input[strcspn(input, "\n")] = '\0';
-		char *token = strtok(input, " ");
-
-		i = 0;
-
-		while (token != NULL)
-		{
-			command[i++] = token;
-			token = strtok(NULL, " ");
-		}
-		command[i] = NULL;
-		execute_command(command);
-	}
-	return (0);
 }
