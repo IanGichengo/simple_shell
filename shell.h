@@ -33,17 +33,6 @@ typedef struct liststr
 } list_t;
 
 
-/**
- *struct builtin - contains a builtin string and related function
- *@type: the builtin command flag
- *@func: the function
- */
-typedef struct builtin
-{
-	char *type;
-	int (*func)(info_t *);
-} builtin_table;
-
 
 /* PROTOTYPES */
 void display_prompt(void);
