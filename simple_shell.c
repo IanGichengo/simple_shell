@@ -16,10 +16,11 @@ void display_prompt(void)
  */
 void execute_command(char **command)
 {
+	pid_t child_pid = fork();
+
 	if (command[0] == NULL)
 		return;
 
-	pid_t child_pid = fork();
 
 	if (child_pid == -1)
 	{

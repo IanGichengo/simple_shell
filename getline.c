@@ -44,6 +44,8 @@ char *custom_getline(void)
 
 	char *line = NULL;
 	size_t line_size = 0;
+	int remaining_chars = 10;
+	char current_char;
 
 	while (1)
 	{
@@ -57,7 +59,7 @@ char *custom_getline(void)
 			remaining_chars = (size_t)read_chars;
 		}
 
-		char current_char = *buffer_ptr++;
+		current_char = *buffer_ptr++;
 
 		remaining_chars--;
 
