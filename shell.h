@@ -13,23 +13,10 @@
 #include <errno.h>
 
 /* For Read/Write Buffers */
-#define READ_BUF_SIZE 1024
-#define WRITE_BUF_SIZE 1024
-#define BUF_FLUSH -1
+#define MAX_INPUT_LENGTH 1024
 
-/* for command chaining */
-#define CMD_NORM	0
-#define CMD_OR		1
-#define CMD_AND		2
-#define CMD_CHAIN	3
-/* for convert_number() */
-#define CONVERT_LOWERCASE	1
-#define CONVERT_UNSIGNED	2
-/* 1 if using system getline() */
-#define USE_GETLINE 0
-#define USE_STRTOK 0
-#define HIST_FILE	".simple_shell_history"
-#define HIST_MAX	4096
+
+
 extern char **environ;
 /**
  * struct liststr - singly linked list
@@ -58,7 +45,9 @@ typedef struct builtin
 
 
 /* PROTOTYPES */
-
+void display_prompt(void);
+void execute_command(char **command);
+int main(void);
 
 
 
