@@ -52,6 +52,8 @@ int main(void);
 ssize_t read_input(char *buffer, size_t size);
 char *append_char(char *str, char c, size_t *size);
 char *custom_getline(void);
+void exit_shell(void);
+
 
 
 #endif
