@@ -37,14 +37,6 @@ typedef struct liststr
 
 
 /* PROTOTYPES */
-void display_prompt(void);
-void execute_command(char **command);
-ssize_t read_input(char *buffer, size_t size);
-char *append_char(char *str, char c, size_t *size);
-char *custom_getline(void);
-void exit_shell(void);
-char *find_next_token(char *str, char delimiter, char **save_ptr);
-void print_environment(char **env_vars);
 int main(void);
 
 
