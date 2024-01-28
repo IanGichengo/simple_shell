@@ -15,6 +15,8 @@
 /* For Read/Write Buffers */
 #define MAX_INPUT_LENGTH 1024
 #define BUFFER_SIZE 1024
+#define DELIM "\t\r\n\a"
+#define MAX_LINE 80
 
 
 
@@ -43,6 +45,7 @@ char *custom_getline(void);
 void exit_shell(void);
 char *find_next_token(char *str, char delimiter, char **save_ptr);
 void print_environment(char **env_vars);
+int main(void);
 
 
 
