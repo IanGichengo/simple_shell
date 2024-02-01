@@ -2,6 +2,8 @@
 
 /**
  * hsh_exit - Builtin exit command
+ * @args: arguments array
+ * Return: exits with success status
  */
 
 int hsh_exit(char **args)
@@ -10,7 +12,12 @@ int hsh_exit(char **args)
 	exit(EXIT_SUCCESS);
 }
 
-/* Builtin env command */
+/**
+ * hsh_env - builtin env command
+ * @args: arguments array
+ * Return: always returns 1
+ */
+
 int hsh_env(char **args)
 {
 	char *const envp[] = {NULL};
@@ -32,7 +39,12 @@ int hsh_env(char **args)
 	return (1);
 }
 
-/* Check if a command is a builtin */
+/**
+ * is_builtin - checks if a command is built in
+ * @command: command to check
+ * Return: 1 if the command is builtin, 0 otherwise
+ */
+
 int is_builtin(char *command)
 {
 	if (strcmp(command, "exit") == 0 || strcmp(command, "env") == 0)
