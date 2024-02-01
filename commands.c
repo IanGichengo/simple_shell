@@ -1,36 +1,43 @@
 #include "shell.h"
 
-/* Execute a command */
+/**
+ * execute_command - executes a command
+ * @args: arguments array
+ * Return: 1 on success 0 on failure
+ */
+
 int execute_command(char **args)
 {
-    pid_t pid, wpid;
-    int status;
+	pid_t pid, wpid;
+	int status;
 
-    if (args == NULL || args[0] == NULL)
-        return (1);
-    
+	if (args == NULL || args[0] == NULL)
+		return (1);
 
-    if (is_builtin(args[0])) {
-        return hsh_exit(args) || hsh_env(args);
-    }
+	if (is_builtin(args[0]))
+		return (hsh_exit(args) || hsh_env(args));
 
-    pid = fork();
+	pid = fork();
 
-    if (pid == 0) {
-        /* Child process */
-        if (execve(args[0], args, environ) == -1) {
-            perror("hsh");
-        }
-        exit(EXIT_FAILURE);
-    } else if (pid < 0) {
-        /* Fork error */
-        perror("hsh");
-    } else {
-        /* Parent process */
-        do {
-            wpid = waitpid(pid, &status, WUNTRACED);
-        } while (!WIFEXITED(status) && !WIFSIGNALED(status));
-    }
+	if (pid == 0)
+	{
+		if (execve(args[0], args, environ) == -1)
+		{
+			perror("hsh");
+		}
+		exit(EXIT_FAILURE);
+	}
 
-    return (1);
+	else if (pid < 0)
+	{
+		perror("hsh");
+	}
+	else
+	{
+		do {
+			wpid = waitpid(pid, &status, WUNTRACED);
+		} while (!WIFEXITED(status) && !WIFSIGNALED(status));
+	}
+
+	return (1);
 }

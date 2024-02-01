@@ -38,8 +38,11 @@ typedef struct liststr
 
 /* PROTOTYPES */
 int main(void);
-
-
-
+int hsh_exit(char **args);
+int hsh_env(char **args);
+int is_builtin(char *command);
+int execute_command(char **args);
+char **parse_line(char *line);
+void handle_signal(int signal);
 
 #endif
