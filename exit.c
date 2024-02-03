@@ -1,71 +1,62 @@
 #include "shell.h"
 
 /**
- **_strncpy - copies a string
- *@dest: the destination string to be copied to
- *@src: the source string
- *@n: the amount of characters to be copied
- *Return: the concatenated string
+ * _strncpy - copies a string
+ * @dest: destination string
+ * @src: source string
+ * @n: amount of characters to copy
+ * Return: concatenated string
  */
-char *_strncpy(char *dest, char *src, int n)
+
+char *_strncpy(char *dest, const char *src, size_t n)
 {
-	int i, j;
+	size_t i;
 	char *s = dest;
 
-	i = 0;
-	while (src[i] != '\0' && i < n - 1)
-	{
+	for (i = 0; i < n && src[i] != '\0'; i++)
 		dest[i] = src[i];
-		i++;
-	}
-	if (i < n)
-	{
-		j = i;
-		while (j < n)
-		{
-			dest[j] = '\0';
-			j++;
-		}
-	}
+
+	for (; i < n; i++)
+		dest[i] = '\0';
+
 	return (s);
 }
+
 /**
- **_strncat - concatenates two strings
- *@dest: the first string
- *@src: the second string
- *@n: the amount of bytes to be maximally used
- *Return: the concatenated string
+ * _strncat - concatenates two strings
+ * @dest: first string
+ * @src: second string
+ * @n: maximum amount of bytes used
+ * Return: concatenated string
  */
-char *_strncat(char *dest, char *src, int n)
+
+char *_strncat(char *dest, const char *src, size_t n)
 {
-	int i, j;
+	size_t i, j;
 	char *s = dest;
 
-	i = 0;
-	j = 0;
-	while (dest[i] != '\0')
-		i++;
-	while (src[j] != '\0' && j < n)
-	{
+	for (i = 0; dest[i] != '\0'; i++)
+		;
+
+	for (j = 0; j < n && src[j] != '\0'; i++, j++)
 		dest[i] = src[j];
-		i++;
-		j++;
-	}
-	if (j < n)
-		dest[i] = '\0';
+
+	dest[i] = '\0';
+
 	return (s);
 }
+
 /**
- **_strchr - locates a character in a string
- *@s: the string to be parsed
- *@c: the character to look for
- *Return: (s) a pointer to the memory area s
+ * _strchr - locates character in a string
+ * @s: string to be parsed
+ * @c: character to look for
+ * Return: pointer to the memory area s
  */
+
 char *_strchr(char *s, char c)
 {
-	do {
-		if (*s == c)
-			return (s);
-	} while (*s++ != '\0');
-	return (NULL);
+	while (*s != '\0' && *s != c)
+		s++;
+
+	return (*s == c ? s : NULL);
 }
